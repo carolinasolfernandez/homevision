@@ -41,11 +41,11 @@ func NewHouseService(httpClient *http.Client, url string, photosDir string) *hou
 func (h houseService) GetHouses(pages, numPerPage int, houseCh chan<- []House, errorCh chan<- error) {
 	var wg = &sync.WaitGroup{}
 
-	for i := 0; i < pages; i++ {
+	for i := 1; i <= pages; i++ {
 		wg.Add(1)
 		go func(i int) {
 			defer wg.Done()
-			err := h.getPage(i+1, numPerPage, houseCh)
+			err := h.getPage(i, numPerPage, houseCh)
 			if err != nil {
 				errorCh <- err
 			}
