@@ -11,7 +11,7 @@ import (
 	"sync"
 )
 
-type Houses struct {
+type houses struct {
 	Houses []House `json:"houses"`
 }
 
@@ -96,7 +96,7 @@ func (h houseService) getPage(page, perPage int, housesCh chan<- []House) error 
 		return fmt.Errorf("getPage: error reading body : %w", err)
 	}
 
-	var houses Houses
+	var houses houses
 	if err = json.Unmarshal(body, &houses); err != nil {
 		return fmt.Errorf("getPage: error unmarshaling response body: %w", err)
 	}
