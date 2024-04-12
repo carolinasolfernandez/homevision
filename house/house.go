@@ -1,4 +1,4 @@
-package main
+package house
 
 import (
 	"encoding/json"
@@ -27,6 +27,14 @@ type houseService struct {
 	httpClient *http.Client
 	url        string
 	photosDir  string
+}
+
+func NewHouseService(httpClient *http.Client, url string, photosDir string) *houseService {
+	return &houseService{
+		httpClient: httpClient,
+		url:        url,
+		photosDir:  photosDir,
+	}
 }
 
 // GetHouses calls the house service to get the houses
